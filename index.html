@@ -1,4 +1,12 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XGEZTHCGPE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XGEZTHCGPE');
+</script>
 <title>Nourish — AI Nutrition, Personalised for You</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Point your camera at any food. AI reads the label. You get clarity — not lectures.">
@@ -100,9 +108,9 @@ body {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(10,9,7,0.55) 0%,
-    rgba(10,9,7,0.3) 40%,
-    rgba(10,9,7,0.75) 100%
+    rgba(10,9,7,0.70) 0%,
+    rgba(10,9,7,0.50) 45%,
+    rgba(10,9,7,0.88) 100%
   );
   display: flex;
   flex-direction: column;
@@ -1485,7 +1493,6 @@ body {
   gap: 10px;
   align-items: flex-start;
 }
-.pref-card:hover { border-color: var(--accent); }
 .pref-card.active { border-color: var(--accent); background: var(--accent-light); }
 .pref-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; line-height:1; }
 .pref-icon i { display:block; line-height:1; }
@@ -1706,7 +1713,156 @@ footer {
   color: var(--accent);
 }
 .footer-note { font-size: 11px; color: var(--fg-muted); }
+/* ── CONFIRMATION MODAL ── */
+.confirm-modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.confirm-modal-backdrop.open { display: flex; }
+.confirm-modal {
+  background: #0F0E0B;
+  border: 1px solid rgba(110,231,183,0.25);
+  border-radius: 20px;
+  padding: 40px 36px 32px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  animation: modalIn 0.3s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.confirm-modal-icon {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: rgba(110,231,183,0.12);
+  border: 1.5px solid rgba(110,231,183,0.3);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 26px;
+}
+.confirm-modal-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 10px;
+  font-family: var(--font);
+  letter-spacing: -0.01em;
+}
+.confirm-modal-body {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+  margin: 0 0 28px;
+  font-family: var(--font);
+}
+.confirm-modal-close {
+  width: 100%;
+  padding: 14px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.confirm-modal-close:hover { background: #4aaf88; }
+.confirm-modal-timer {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  margin-top: 12px;
+  font-family: var(--font);
+}
+
 /* ── FOOD BG ILLUSTRATIONS ── */
+
+/* ── MOBILE RESPONSIVE ───────────────────────── */
+@media (max-width: 600px) {
+  /* Hero */
+  .hero-wrap { min-height: 100svh; max-height: none; }
+  .hero-overlay {
+    padding: 0 16px 40px 16px;
+  }
+  .hero-nav {
+    padding-top: calc(env(safe-area-inset-top, 12px) + 12px);
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .nav-logo { font-size: 18px; }
+  .nav-cta { font-size: 11px; padding: 6px 12px; }
+  .hero-content h1 { font-size: clamp(34px, 10vw, 52px); }
+  .hero-sub { font-size: 16px; max-width: 100%; }
+  .hero-form { max-width: 100%; }
+  .hero-input { min-width: 0; width: 100%; }
+  .hero-btn, .hero-cta-btn { width: 100%; justify-content: center; }
+  .hero-cta-wrap { width: 100%; }
+
+  /* Page body */
+  .page-body { padding-left: 16px; padding-right: 16px; }
+
+  /* Sections */
+  .section { padding: 48px 0; }
+  .section h2 { font-size: clamp(26px, 8vw, 36px); }
+  .section-sub { font-size: 16px; }
+
+  /* Trust bar */
+  .trust-bar { padding: 10px 16px; overflow-x: auto; }
+  .trust-strip { flex-wrap: nowrap; overflow-x: auto; }
+
+  /* Demo grid already 1-col at 680px, but tighten gap */
+  .demo-grid { gap: 16px; }
+  .scanner-stage { flex-direction: column; gap: 12px; }
+  .label-card { flex: none; width: 100%; max-height: none; }
+  .dish-photo-wrap { height: 220px; }
+
+  /* Steps */
+  .steps-grid { grid-template-columns: 1fr; gap: 12px; }
+
+  /* Pref cards — 1 col, no pointer */
+  .prefs-grid { grid-template-columns: 1fr; gap: 10px; }
+  .pref-card { cursor: default; }
+
+  /* Who it's for — tabs overflow scroll */
+  .persona-tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .ptab { flex-shrink: 0; }
+  .persona-cards { grid-template-columns: 1fr !important; }
+
+  /* Stats */
+  .proof-row { flex-direction: column; }
+  .proof-stat { border-right: none; border-bottom: 1px solid var(--border-solid); padding: 16px 0; }
+  .proof-stat:last-child { border-bottom: none; }
+
+  /* Waitlist section */
+  .waitlist-section { padding: 56px 16px 56px; }
+  .waitlist-row { flex-direction: column; gap: 10px; }
+  .waitlist-input, .waitlist-btn { width: 100%; }
+  .waitlist-trust { gap: 16px; }
+
+  /* Phone frames — stack */
+  .phone-pair { gap: 16px; }
+  .phone-frame { width: 160px; }
+
+  /* Combined card */
+  .combined-body { flex-direction: column; }
+}
+
+@media (max-width: 400px) {
+  .hero-content h1 { font-size: 30px; }
+  .nav-logo { font-size: 16px; }
+  .phone-frame { width: 140px; }
+}
 
 </style>
 <div class="food-bg-removed" style="display:none">
@@ -2430,28 +2586,28 @@ footer {
       <h2>Choose your approach.</h2>
       <p class="section-sub">Orientations, not rules. You always decide what works.</p>
       <div class="prefs-grid" id="prefsGrid">
-        <div class="pref-card active" onclick="selectPref(this)">
+        <div class="pref-card">
           <div class="pref-icon"><span class="material-symbols-rounded" style="color:#6EE7B7;">science</span></div>
           <div>
             <div class="pref-name">Evidence-based</div>
             <div class="pref-desc">WHO + Harvard Healthy Eating Plate. Globally applicable, clinically grounded.</div>
           </div>
         </div>
-        <div class="pref-card" onclick="selectPref(this)">
+        <div class="pref-card">
           <div class="pref-icon"><span class="material-symbols-rounded" style="color:#6EE7B7;">eco</span></div>
           <div>
             <div class="pref-name">Ayurvedic</div>
             <div class="pref-desc">Dosha-aware, seasonal, whole-food focused. Rooted in Ayurvedic principles.</div>
           </div>
         </div>
-        <div class="pref-card" onclick="selectPref(this)">
+        <div class="pref-card">
           <div class="pref-icon"><span class="material-symbols-rounded" style="color:#FBB040;">sunny</span></div>
           <div>
             <div class="pref-name">Mediterranean</div>
             <div class="pref-desc">One of the most-studied dietary patterns. Olive oil, legumes, fish, fibre.</div>
           </div>
         </div>
-        <div class="pref-card" onclick="selectPref(this)">
+        <div class="pref-card">
           <div class="pref-icon"><span class="material-symbols-rounded" style="color:#6EE7B7;">yard</span></div>
           <div>
             <div class="pref-name">Plant-based</div>
@@ -2459,7 +2615,7 @@ footer {
           </div>
         </div>
       </div>
-      <div class="prefs-footnote">More coming: Keto, Halal-optimised, Low-FODMAP. None override your doctor's advice.</div>
+      <div class="prefs-footnote">More approaches coming soon. None override your doctor's advice.</div>
     </div>
   </div>
 
@@ -2474,10 +2630,6 @@ footer {
         <div class="proof-stat">
           <div class="proof-num">50k+</div>
           <div class="proof-lbl">Food labels indexed</div>
-        </div>
-        <div class="proof-stat">
-          <div class="proof-num">4</div>
-          <div class="proof-lbl">Eating approaches supported</div>
         </div>
       </div>
     </div>
@@ -2496,10 +2648,6 @@ footer {
           <button class="waitlist-btn" onclick="handleBottomSignup()">Join waitlist →</button>
         </div>
         <div class="waitlist-privacy">Free forever for early members</div>
-        <div class="bottom-success" id="bottomSuccess">
-          <span class="material-symbols-rounded" style="color:#6EE7B7;font-size:20px;vertical-align:-4px;">check_circle</span>
-          You're on the list — we'll be in touch!
-        </div>
       </div>
 
       <div class="waitlist-trust">
@@ -2529,6 +2677,17 @@ footer {
   </footer>
 
 </div><!-- /page-body -->
+
+<!-- ── CONFIRMATION MODAL ── -->
+<div class="confirm-modal-backdrop" id="confirmModalBackdrop" onclick="if(event.target===this)closeConfirmModal()">
+  <div class="confirm-modal">
+    <div class="confirm-modal-icon">✓</div>
+    <div class="confirm-modal-title">You're on the list!</div>
+    <div class="confirm-modal-body">Thanks for joining. We'll reach out as soon as Nourish is ready for early members.</div>
+    <button class="confirm-modal-close" onclick="closeConfirmModal()">Got it</button>
+    <div class="confirm-modal-timer" id="modalTimer"></div>
+  </div>
+</div>
 
 <script>
 // ── Carousel
@@ -2586,25 +2745,60 @@ function submitToSheet(email, source, onSuccess) {
     body: JSON.stringify({ email: email, source: source })
   }).catch(() => {}); // no-cors means we never see the response — that's fine
   bump(email);
+  // GA4 conversion event
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'generate_lead', { source: source });
+  }
   onSuccess();
 }
 
+let _modalTimer = null;
+let _modalCountdown = null;
+
+function showConfirmModal(inputEl, btnEl) {
+  const backdrop = document.getElementById('confirmModalBackdrop');
+  const timerEl = document.getElementById('modalTimer');
+  backdrop.classList.add('open');
+  let secs = 30;
+  timerEl.textContent = 'Closing in ' + secs + 's';
+  _modalCountdown = setInterval(() => {
+    secs--;
+    timerEl.textContent = 'Closing in ' + secs + 's';
+    if (secs <= 0) closeConfirmModal(inputEl, btnEl);
+  }, 1000);
+  _modalTimer = setTimeout(() => closeConfirmModal(inputEl, btnEl), 30000);
+}
+
+function closeConfirmModal(inputEl, btnEl) {
+  clearTimeout(_modalTimer);
+  clearInterval(_modalCountdown);
+  const backdrop = document.getElementById('confirmModalBackdrop');
+  backdrop.classList.remove('open');
+  // Always clear the bottom email input on dismiss
+  const bottomInput = document.getElementById('bottomEmail');
+  const bottomBtn   = document.querySelector('.waitlist-btn');
+  if (bottomInput) { bottomInput.value = ''; bottomInput.disabled = false; }
+  if (bottomBtn)   bottomBtn.disabled = false;
+  if (inputEl && inputEl !== bottomInput) { inputEl.value = ''; inputEl.disabled = false; }
+  if (btnEl   && btnEl   !== bottomBtn)   btnEl.disabled = false;
+}
+
+// Legacy inline helper kept for hero form
 function showSuccess(msgEl, inputEl, btnEl, displayType) {
-  msgEl.style.display = displayType;
-  msgEl.style.opacity = '1';
-  // After 4 seconds: fade out, then re-enable the form for another entry
-  setTimeout(() => {
-    msgEl.style.transition = 'opacity 0.6s';
-    msgEl.style.opacity = '0';
+  if (msgEl) {
+    msgEl.style.display = displayType;
+    msgEl.style.opacity = '1';
     setTimeout(() => {
-      msgEl.style.display = 'none';
-      msgEl.style.transition = '';
-      inputEl.value = '';
-      inputEl.disabled = false;
-      inputEl.focus();
-      btnEl.disabled = false;
-    }, 650);
-  }, 4000);
+      msgEl.style.transition = 'opacity 0.6s';
+      msgEl.style.opacity = '0';
+      setTimeout(() => {
+        msgEl.style.display = 'none';
+        msgEl.style.transition = '';
+        if (inputEl) { inputEl.value = ''; inputEl.disabled = false; inputEl.focus(); }
+        if (btnEl) btnEl.disabled = false;
+      }, 650);
+    }, 4000);
+  }
 }
 
 function handleHeroSignup() {
@@ -2625,8 +2819,7 @@ function handleBottomSignup() {
   const btn = document.querySelector('.waitlist-btn');
   btn.disabled = true;
   submitToSheet(el.value, 'waitlist', () => {
-    const msg = document.getElementById('bottomSuccess');
-    showSuccess(msg, el, btn, 'flex');
+    showConfirmModal(el, btn);
   });
 }
 function bump(email) {
