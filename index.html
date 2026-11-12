@@ -2718,7 +2718,7 @@ animateCount(Math.max(count, 3));
 // 2. Extensions → Apps Script → paste the doPost function below → Save
 // 3. Deploy → New deployment → Web app → Execute as: Me → Who has access: Anyone → Deploy
 // 4. Copy the web app URL and paste it here:
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyeaaCIdmw4_BYj-gc-NO7QsyvSroeyS1B0S1CqsG7N1iZYB93QY_gGxRFDkig3LeEiuw/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw1MU4jjy_YkdXDYMrzXTRY1luzYCv8vguVboTICC__ejIGcql3DtFFLS7j5_hLLXqoVA/exec';
 /*
   Paste this into Google Apps Script (Extensions > Apps Script):
 
@@ -2741,9 +2741,8 @@ function submitToSheet(email, source, onSuccess) {
   fetch(SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email, source: source })
-  }).catch(() => {}); // no-cors means we never see the response — that's fine
+    body: new URLSearchParams({ email: email, source: source })
+  }).catch(() => {}); // no-cors — form-encoded body passes through correctly
   bump(email);
   // GA4 conversion event
   if (typeof gtag !== 'undefined') {
